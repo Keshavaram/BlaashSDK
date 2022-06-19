@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "TestModuleExample"
+rootProject.name = "BlaashSDK"
 include ':app'
 include ':URLModule'

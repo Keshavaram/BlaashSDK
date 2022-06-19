@@ -13,7 +13,6 @@ import blaash.gaming.mobile.urlmodule.Product;
 public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
-    private BlaashEvents be;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
