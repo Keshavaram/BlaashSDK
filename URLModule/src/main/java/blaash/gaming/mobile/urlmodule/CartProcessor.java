@@ -11,7 +11,7 @@ public class CartProcessor implements OnHttpPostComplete{
 
     public CartProcessor() {}
 
-    public void requestFormatter(boolean isCartAdded, Product cartProduct, float cartGrossTotal, int quantityAddedOrRemoved, BlaashSDK context)
+    public void requestFormatter(boolean isCartAdded, Product cartProduct, String cartGrossTotal, String quantityAddedOrRemoved, BlaashSDK context)
     {
         BackGroundThread bgThread = new BackGroundThread(isCartAdded,cartProduct,cartGrossTotal,quantityAddedOrRemoved, context);
         bgThread.execute();

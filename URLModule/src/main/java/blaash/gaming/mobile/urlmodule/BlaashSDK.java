@@ -21,7 +21,7 @@ public class BlaashSDK implements OnBackGroundThreadComplete {
         this.last_name = last_name;
     }
 
-    public void notifyCartChanges(boolean isCartAdded,Product cartProduct,float cartGrossTotal,int quantityAddedOrRemoved)
+    public void notifyCartChanges(boolean isCartAdded,Product cartProduct,String cartGrossTotal,String quantityAddedOrRemoved)
     {
         cartProcessor.requestFormatter(isCartAdded, cartProduct, cartGrossTotal, quantityAddedOrRemoved,this);
     }

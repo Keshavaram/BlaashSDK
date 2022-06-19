@@ -2,13 +2,14 @@ package blaash.gaming.mobile.urlmodule;
 
 import androidx.annotation.NonNull;
 
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
+
 
 public class EventInfo {
     private String event_name;
-    private JSONObject event_data;
+    private JsonObject event_data;
 
-    protected EventInfo(String event_name, JSONObject event_data) {
+    protected EventInfo(String event_name, JsonObject event_data) {
         this.event_name = event_name;
         this.event_data = event_data;
     }
@@ -21,11 +22,11 @@ public class EventInfo {
         this.event_name = event_name;
     }
 
-    public JSONObject getEvent_data() {
+    public JsonObject getEvent_data() {
         return event_data;
     }
 
-    public void setEvent_data(JSONObject event_data) {
+    public void setEvent_data(JsonObject event_data) {
         this.event_data = event_data;
     }
 

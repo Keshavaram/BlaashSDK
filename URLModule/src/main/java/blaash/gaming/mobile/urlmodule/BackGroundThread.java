@@ -1,13 +1,16 @@
 package blaash.gaming.mobile.urlmodule;
 
 import android.os.AsyncTask;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -18,11 +21,11 @@ public class BackGroundThread extends AsyncTask<Void,Void,EventInfo> {
     private static final String TAG = "BackGroundThread";
     private final OnBackGroundThreadComplete backGroundThreadComplete;
     private final Product product;
-    private final float cartGrossTotal;
-    private final int quantityAddedOrRemoved;
+    private final String cartGrossTotal;
+    private final String quantityAddedOrRemoved;
     private final boolean isCartAdded;
 
-    public BackGroundThread(boolean isCartAdded,Product product, float cartGrossTotal, int quantityAddedOrRemoved, OnBackGroundThreadComplete backGroundThreadComplete) {
+    public BackGroundThread(boolean isCartAdded,Product product, String cartGrossTotal, String quantityAddedOrRemoved, OnBackGroundThreadComplete backGroundThreadComplete) {
         this.product = product;
         this.cartGrossTotal = cartGrossTotal;
         this.quantityAddedOrRemoved = quantityAddedOrRemoved;
@@ -30,38 +33,21 @@ public class BackGroundThread extends AsyncTask<Void,Void,EventInfo> {
         this.isCartAdded = isCartAdded;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected EventInfo doInBackground(Void... notUsed) {
-//        Map<String,String> fields = new HashMap<>();
-//        for (Field field : product.getClass().getDeclaredFields()) {
-//            try {
-//                fields.put(field.getName(), Objects.requireNonNull(field.get(product)).toString());
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        for (String s :
-//                fields.keySet()) {
-//            try { json.put(s, fields.get(s));}
-//            catch (JSONException e) { e.printStackTrace();}
-//        }
+        AddToCart addToCart = new AddToCart(cartGrossTotal,quantityAddedOrRemoved,product);
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String jsonString = gson.toJson(addToCart);
+        JsonParser jsonParser = new JsonParser();
+        JsonObject json = (JsonObject) jsonParser.parse(jsonString);
+
 //        try {
-//            json.put("cartGrossTotal",cartGrossTotal);
-//            json.put("quantityAddedOrRemoved",quantityAddedOrRemoved);
+//            json = new JsonObject(jsonString);
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        String jsonString = gson.toJson(product);
-        JSONObject json = null;
-        try {
-            json = new JSONObject(jsonString);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-//        JsonParser parser = new JsonParser();
-//        json = (JSONObject)parser.parse(jsonString);
 
         return new EventInfo(isCartAdded ? Constants.ADD_TO_CART : Constants.REMOVE_FROM_CART,json);
     }

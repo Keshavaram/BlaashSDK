@@ -36,6 +36,6 @@ public class MainActivity extends AppCompatActivity{
         BlaashSDK sdk = new BlaashSDK();
         sdk.initialize("abc","abc","abc","abc","abc");
         sdk.notifyCartChanges(true,new Product("abc","abc","abc",
-                "abc","abc","abc","abc","abc","abc"),100,1);
+                "abc","abc","abc","abc","abc","abc"),"100","1");
     }
 }
