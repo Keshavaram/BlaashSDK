@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "BlaashSDK"
-include ':app'
-include ':URLModule'
+include ':Blaash_andriod_sdk'
+include ':test_app'
