@@ -38,16 +38,10 @@ public class BackGroundThread extends AsyncTask<Void,Void,EventInfo> {
     protected EventInfo doInBackground(Void... notUsed) {
         AddToCart addToCart = new AddToCart(cartGrossTotal,quantityAddedOrRemoved,product);
         GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
+        builder.serializeNulls();
+        Gson gson = builder.setPrettyPrinting().create();
         String jsonString = gson.toJson(addToCart);
-        JsonParser jsonParser = new JsonParser();
-        JsonObject json = (JsonObject) jsonParser.parse(jsonString);
-
-//        try {
-//            json = new JsonObject(jsonString);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        JsonObject json = (JsonObject) JsonParser.parseString(jsonString);
 
         return new EventInfo(isCartAdded ? Constants.ADD_TO_CART : Constants.REMOVE_FROM_CART,json);
     }

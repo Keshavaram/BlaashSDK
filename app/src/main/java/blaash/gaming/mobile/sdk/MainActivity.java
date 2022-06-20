@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity{
 //        })
 // *********************************************************************Token**************************************************************
         BlaashSDK sdk = new BlaashSDK();
-        sdk.initialize("abc","abc","abc","abc","abc");
-        sdk.notifyCartChanges(true,new Product("abc","abc","abc",
-                "abc","abc","abc","abc","abc","abc"),"100","1");
+        sdk.initialize("abc","abc",null,"abc","abc");
+        sdk.notifyCartChanges(true,new Product(null,"abc","abc",
+                "abc","abc","abc","abc","abc",1234),"100","1");
     }
 }

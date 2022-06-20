@@ -10,11 +10,11 @@ public class Product {
     public String productPrice;
     public String productCategoryNames;
     public String productCategory;
-    public String portalProductID;
+    public long portalProductID;
 
     public Product(String productSKU, String productDisplayName, String productShortName, String productURL,
                    String baseImageURL, String productPrice, String productCategoryNames, String productCategory,
-                   String portalProductID) {
+                   long portalProductID) {
         this.productSKU = productSKU;
         this.productDisplayName = productDisplayName;
         this.productShortName = productShortName;
