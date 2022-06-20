@@ -1,46 +1,42 @@
 package blaash.gaming.mobile.urlmodule;
 
-import androidx.annotation.NonNull;
-
 import java.util.List;
 
 public class BlaashEvents {
-    private static final String TAG = "BlaashEvents";
-    private String Portal_CustomerId;
-    private String emailId;
-    private String primaryPhoneNumber;
-    private String first_name;
-    private String last_name;
-    private List<EventInfo> event_info;
+    private final String Portal_CustomerId;
+    private final String emailId;
+    private final String primaryPhoneNumber;
+    private final String first_name;
+    private final String facebookId;
+    private  boolean isAnonymousUser = true;
+    private final String last_name;
+    private List<Event_information> event_info;
 
-    public BlaashEvents(String portal_CustomerId, String emailId,
+    public void setEvent_info(List<Event_information> event_info) {
+        this.event_info = event_info;
+    }
+
+    protected BlaashEvents(String portal_CustomerId, String emailId,String facebookId,
                         String primaryPhoneNumber, String first_name,
-                        String last_name,List<EventInfo> event_info) {
+                        String last_name) {
         Portal_CustomerId = portal_CustomerId;
         this.emailId = emailId;
+        this.facebookId = facebookId;
         this.primaryPhoneNumber = primaryPhoneNumber;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.event_info = event_info;
+
+        SetAnonymousUser();
     }
-    //blaashSdk
-    //Intialize()
 
-    //NotifyCartChanges(bool isCardAdded,Product cardProduct,decimal grossTotal,int qualityaddedRemoved)
-   // {
-        //n event_informmation CardProceessor.RequestFOrmatter()
-        // blaash_eveny = FormMessageReqyest(event_informmation);
-        //Dispatch(blaash_eveny);
-   // }
+    private void SetAnonymousUser()
+    {
+       if(IsNullOREmpty(emailId) || IsNullOREmpty(primaryPhoneNumber) || IsNullOREmpty(facebookId))
+           isAnonymousUser = false;
+    }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "Customer ID = " + this.Portal_CustomerId + ",\n" +
-                "Email ID = " + this.emailId + ",\n" +
-                "First Name = " + this.first_name + ",\n" +
-                "Primary Phone Number =  " + this.primaryPhoneNumber + ",\n" +
-                "Last Name = " + this.last_name + ",\n" +
-                "Event info = " + event_info;
+    private  boolean IsNullOREmpty(String value)
+    {
+        return value != null && value.length() > 0;
     }
 }

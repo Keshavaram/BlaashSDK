@@ -21,7 +21,7 @@ public class ProcessURL implements OnBackGroundThreadComplete {
     }
 
     @Override
-    public void notify(EventInfo res) {
+    public void notify(Event_information res) {
 
     }
 }

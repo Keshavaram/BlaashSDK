@@ -5,11 +5,11 @@ import androidx.annotation.NonNull;
 import com.google.gson.JsonObject;
 
 
-public class EventInfo {
+public class Event_information {
     private String event_name;
     private JsonObject event_data;
 
-    protected EventInfo(String event_name, JsonObject event_data) {
+    protected Event_information(String event_name, JsonObject event_data) {
         this.event_name = event_name;
         this.event_data = event_data;
     }

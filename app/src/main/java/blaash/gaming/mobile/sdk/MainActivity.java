@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.utils.ViewSpline;
 
 import blaash.gaming.mobile.urlmodule.BlaashEvents;
 import blaash.gaming.mobile.urlmodule.BlaashSDK;
+import blaash.gaming.mobile.urlmodule.Customer;
 import blaash.gaming.mobile.urlmodule.Product;
 
 public class MainActivity extends AppCompatActivity{
@@ -33,8 +35,7 @@ public class MainActivity extends AppCompatActivity{
 //        })
 // *********************************************************************Token**************************************************************
         BlaashSDK sdk = new BlaashSDK();
-        sdk.initialize("abc","abc",null,"abc","abc");
-        sdk.notifyCartChanges(true,new Product(null,"abc","abc",
-                "abc","abc","abc","abc","abc",1234),"100","1");
+        sdk.initialize("abc","abc","abc","abc","abc","abc");
+
     }
 }
